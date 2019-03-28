@@ -28,7 +28,7 @@ module Sort(x0, x1, x2, x3, reset, clock, s0, s1, s2, s3, done);
 	output reg done;
 //	reg [DIGIT - 1 : 0] r0, r1, r2, r3;
 	reg [2 : 0] currentstate, nextstate;
-	reg [DIGIT - 1 : 0] count;
+//	reg [DIGIT - 1 : 0] count;
 	parameter State_Disorder = 3'b001, 
 			  State_01Inorder = 3'b010,
 			  State_012Inorder = 3'b100;
@@ -58,13 +58,10 @@ module Sort(x0, x1, x2, x3, reset, clock, s0, s1, s2, s3, done);
 		case (currentstate)
 			State_Disorder:
 			begin
-				if (count != 3'b000)
-				begin
-					if (s0 > s1)
-						nextstate <= State_01Inorder;
-					else
-						nextstate <= State_01Inorder;
-				end
+				if (s0 > s1)
+					nextstate <= State_01Inorder;
+				else
+					nextstate <= State_01Inorder;
 			end
 			
 			State_01Inorder:
@@ -92,7 +89,6 @@ module Sort(x0, x1, x2, x3, reset, clock, s0, s1, s2, s3, done);
 	begin
 		if (reset) 
 		begin
-			count <= 'b0;
 			s0 <= x0;
 			s1 <= x1;
 			s2 <= x2;
@@ -101,7 +97,6 @@ module Sort(x0, x1, x2, x3, reset, clock, s0, s1, s2, s3, done);
 		end
 		else
 		begin
-			count <= count + 'b1;
 			done <= 'b0;
 			case (currentstate)
 				State_Disorder:
