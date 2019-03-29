@@ -59,29 +59,29 @@ module Sort(x0, x1, x2, x3, reset, clock, s0, s1, s2, s3, done);
 			State_Disorder:
 			begin
 				if (s0 > s1)
-					nextstate <= State_01Inorder;
+					nextstate = State_01Inorder;
 				else
-					nextstate <= State_01Inorder;
+					nextstate = State_01Inorder;
 			end
 			
 			State_01Inorder:
 			begin
 				if (s1 > s2)
-					nextstate <= State_Disorder;
+					nextstate = State_Disorder;
 				else
-					nextstate <= State_012Inorder;
+					nextstate = State_012Inorder;
 			end
 			
 			State_012Inorder:
 			begin
 				if (s2 > s3)
-					nextstate <= State_Disorder;
+					nextstate = State_Disorder;
 				else
-					nextstate <= State_012Inorder;
+					nextstate = State_012Inorder;
 			end
 			
 			default :
-				nextstate <= State_Disorder;
+				nextstate = State_Disorder;
 		endcase 
 	end
 	
