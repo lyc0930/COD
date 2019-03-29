@@ -85,42 +85,42 @@ module DIV (clock, reset, x, y, q, r, error, done);// currentstate, nextstate, c
 		if (reset)
 		begin
 			count <= N;
-			done = 1'b0;
-			error = 1'b0;
+			done <= 1'b0;
+			error <= 1'b0;
 		end
 		else
 		begin
 			case (currentstate)
 				State_Begin:
 				begin
-					Data = 0;
 					if (y == 0)
-						error = 1'b1;
+					begin
+						error <= 1'b1;
+						Data <= 0;
+					end
 					else
 					begin
 						if (count == N)
-							Data = {{N{1'b0}}, x};
+							Data <= {{N{1'b0}}, x};
 					end
 				end
 				
 				State_Shift:
 				begin
 					count <= count - 3'b001;				
-					Data = Data << 1;
-					if (Data[(2 * N - 1) : N] >= y)
-					begin
-						Data[0] = Data[0] + 1'b1;
-						Data[(2 * N - 1) : N] = Data[(2 * N - 1) : N] - y;
-					end
+					if (Data[(2 * N - 2) : N - 1] >= y)
+						Data <= (Data << 1) + 1'b1 - (y << N);
+					else
+						Data <= (Data << 1);
 				end
 				
 				State_Finish:
-					done = 1'b1;
+					done <= 1'b1;
 					
 				default :
 				begin
-					done = 1'b0;
-					error = 1'b0;
+					done <= 1'b0;
+					error <= 1'b0;
 				end
 			endcase
     	end 
