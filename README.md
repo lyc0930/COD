@@ -15,11 +15,14 @@
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
-- GenerateClock.v
-    用于在仿真文件中生成持续的时钟信号
-    Generating the clock signal in test-bench
-- Nexys4DDR_Master.xdc
-    开发版约束文件
-    Constraint file of the Nexys4DDR
+- FrequencyDivision.v  
+    用于时钟分频（适用于IP核输出信号）  
+    Dividing the rate of the clock signal(after the IP core)  
+- GenerateClock.v  
+    用于在仿真文件中生成持续的时钟信号  
+    Generating the clock signal in test-bench  
+- Nexys4DDR_Master.xdc  
+    开发版约束文件  
+    Constraint file of the Nexys4DDR  
 
 ### 目前更新到第三次实验（部分）
