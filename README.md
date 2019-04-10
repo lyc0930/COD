@@ -5,11 +5,11 @@
 > This is a repository of verilog code of computer organization and design courses in summer semester of sophomore including the screen-catches, photos and reports of courses  
 
 ***
-## 各次实验对应目录：
-## Directories of each lab: 
-1. 运算器、寄存器、比较器、累加器、斐波那契数列生成
+## 各次实验对应目录：  
+## Directories of each lab:   
+1. 运算器、寄存器、比较器、累加器、斐波那契数列生成  
     ALU, Register, CMP, ACM, Fibonacci
-2. 除法器、排序
+2. 除法器、排序  
     DIV, Sort
 
 ### 目前更新到第三次实验（部分）
