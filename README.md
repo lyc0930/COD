@@ -26,5 +26,8 @@
 - **Nexys4DDR_Master.xdc**  
     开发版约束文件  
     Constraint file of the Nexys4DDR  
+- **bcdto7segment_dataflow.v**  
+    将BCD码编码为七段数码管显示输出  
+    Encode BCD for 7-Segment display  
 
 ### 目前更新到第三次实验（部分）
