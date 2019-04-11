@@ -9,21 +9,21 @@
 #### 各次实验对应目录：  
 #### Directories of each lab:   
 1. 运算器、寄存器、比较器、累加器、斐波那契数列生成  
-    *ALU, Register, CMP, ACM, Fibonacci*
+    **ALU, Register, CMP, ACM, Fibonacci**
 2. 除法器、排序  
-    DIV, Sort  
+    **DIV, Sort**  
 3. 寄存器组、计数器、循环队列  
-    RegisterFile, Counter, Queue
+    **RegisterFile, Counter, Queue**
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
-- FrequencyDivision.v  
+- **FrequencyDivision.v**  
     用于时钟分频（适用于IP核输出信号）  
     Dividing the rate of the clock signal(after the IP core)  
-- GenerateClock.v  
+- **GenerateClock.v**  
     用于在仿真文件中生成持续的时钟信号  
     Generating the clock signal in test-bench  
-- Nexys4DDR_Master.xdc  
+- **Nexys4DDR_Master.xdc**  
     开发版约束文件  
     Constraint file of the Nexys4DDR  
 
