@@ -9,9 +9,11 @@
 #### 各次实验对应目录：  
 #### Directories of each lab:   
 1. 运算器、寄存器、比较器、累加器、斐波那契数列生成  
-    ALU, Register, CMP, ACM, Fibonacci
+    *ALU, Register, CMP, ACM, Fibonacci*
 2. 除法器、排序  
-    DIV, Sort
+    DIV, Sort  
+3. 寄存器组、计数器、循环队列  
+    RegisterFile, Counter, Queue
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
