@@ -14,7 +14,7 @@
     **DIV, Sort**  
 3. 寄存器组、计数器、循环队列  
     **RegisterFile, Counter, Queue**  
-4. VGA画板
+4. VGA画板  
     **VGA_Brush**
 
 #### 其他代码片段的说明：  
