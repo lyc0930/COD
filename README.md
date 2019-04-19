@@ -19,9 +19,9 @@
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
-- **Counter.v**
-    计数器
-    Clock controled counter
+- **Counter.v**  
+    计数器  
+    Clock controled counter  
 - **FrequencyDivision.v**  
     用于时钟分频（适用于IP核输出信号）  
     Dividing the rate of the clock signal(after the IP core)  
