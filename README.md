@@ -13,10 +13,15 @@
 2. 除法器、排序  
     **DIV, Sort**  
 3. 寄存器组、计数器、循环队列  
-    **RegisterFile, Counter, Queue**
+    **RegisterFile, Counter, Queue**  
+4. VGA画板
+    **VGA_Brush**
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
+- **Counter.v**
+    计数器
+    Clock controled counter
 - **FrequencyDivision.v**  
     用于时钟分频（适用于IP核输出信号）  
     Dividing the rate of the clock signal(after the IP core)  
@@ -30,4 +35,4 @@
     将BCD码编码为七段数码管显示输出  
     Encode BCD for 7-Segment display  
 
-### 目前更新到第三次实验（部分）
+### 目前更新到第四次实验（部分）
