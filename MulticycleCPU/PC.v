@@ -5,7 +5,7 @@
 // 
 // Create Date: 2019/05/04 10:03:33
 // Design Name: 
-// Module Name: PC
+// Module Name: ProgramCounter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
