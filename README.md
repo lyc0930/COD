@@ -15,24 +15,41 @@
 3. 寄存器组、计数器、循环队列  
     **RegisterFile, Counter, Queue**  
 4. VGA画板  
-    **VGA_Brush**
+    **VGA_Brush**  
+5. 多周期CPU  
+    **MulticycleCPU**  
 
 #### 其他代码片段的说明：  
 #### Code snippets:   
 - **Counter.v**  
     计数器  
     Clock controled counter  
+- **Debounce.v**  
+    按钮信号去抖动  
+    Debounce the button signal  
+- **DisplayPulse.v**  
+    七段数码管时装分频  
+    Dividing the rate of the clock signal for the 7-Segment display  
 - **FrequencyDivision.v**  
     用于时钟分频（适用于IP核输出信号）  
     Dividing the rate of the clock signal(after the IP core)  
 - **GenerateClock.v**  
     用于在仿真文件中生成持续的时钟信号  
     Generating the clock signal in test-bench  
+- **Hex7SegmentDisplay**  
+    将16进制数编码为七段数码管显示输出  
+    Encode hexadecimal number for 7-Segment display  
+- **MUX.v**  
+    多选器（2、3、4选1）  
+    Multiplexer(2, 3 or 4 to 1)  
 - **Nexys4DDR_Master.xdc**  
     开发版约束文件  
     Constraint file of the Nexys4DDR  
+- **SunglePulse.v**  
+    产生单独时钟周期信号  
+    Translate a signal change to a single clock cycle  
 - **bcdto7segment_dataflow.v**  
     将BCD码编码为七段数码管显示输出  
     Encode BCD for 7-Segment display  
 
-### 目前更新到第四次实验（部分）
+### 目前更新到第五次实验
