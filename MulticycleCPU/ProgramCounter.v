@@ -21,29 +21,29 @@
 
 
 
-module ProgramCounter #(parameter DIGIT = 32)(clock, reset, NextPC, PCWrite, IAddress);
+module ProgramCounter #(parameter DIGIT = 32)(clock, reset, NextPC, PCWrite, Out);
 	input clock;
 	input reset;
 	input      [DIGIT - 1 : 0] NextPC;
 	input PCWrite;
 	
-	output reg [DIGIT - 1 : 0] IAddress;
+	output reg [DIGIT - 1 : 0] Out;
 
 	initial 
 	begin
-		IAddress = 'b0;
+		Out = 'b0;
 	end
 	
 	always @(posedge clock or posedge reset)
 	begin 
 		if(reset) 
-			IAddress <= 'b0;
+			Out <= 'b0;
 		else 
 		begin
 			if (PCWrite) 
-				IAddress <= NextPC;
+				Out <= NextPC;
 			else 
-				IAddress <= IAddress;
+				Out <= Out;
 		end
 	end
 endmodule
