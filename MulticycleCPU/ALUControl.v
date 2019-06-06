@@ -18,45 +18,43 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`include "MIPS_opcode.vh"
 
-
-module ALUControl #(parameter CTRLSIZE = 4)(funct, Operation, ControlSignal);
+module ALUControl #(parameter CTRLSIZE = 4)(funct, Operation, Signal);
 	input                 [5 : 0] funct;
 	input                 [2 : 0] Operation;
 	
-	output reg [CTRLSIZE - 1 : 0] ControlSignal;
+	output reg [CTRLSIZE - 1 : 0] Signal;
 	
 	initial
 	begin
-		ControlSignal = 4'b0000;
+		Signal = 4'b0000;
 	end
 	
 	always @(*)
 	begin
 		case (Operation)
-			3'b000: ControlSignal = 4'b0000; // LW SW --> ADD
-			3'b001: ControlSignal = 4'b0001; // BEQ --> SUB
+			3'b000: Signal = 4'b0000; // LW SW --> ADD
+			3'b001: Signal = 4'b0001; // BEQ --> SUB
 			3'b010: 
 				case (funct)
-					6'b100000: ControlSignal = 4'b0000; // ADD
-					6'b100010: ControlSignal = 4'b0001; // SUB
-					6'b100100: ControlSignal = 4'b1000; // AND
-					6'b100101: ControlSignal = 4'b1001; //  OR
-					6'b100110: ControlSignal = 4'b1100; // XOR
-					6'b100111: ControlSignal = 4'b1011; // NOR
-					6'b101010: ControlSignal = 4'b1101; // SLT
+					`ADD: Signal = 4'b0000; // ADD
+					`SUB: Signal = 4'b0001; // SUB
+					`AND: Signal = 4'b1000; // AND
+					`OR : Signal = 4'b1001; //  OR
+					`XOR: Signal = 4'b1100; // XOR
+					`NOR: Signal = 4'b1011; // NOR
+					`SLT: Signal = 4'b1101; // SLT
 					default:
-						ControlSignal = 4'b0000;
+						Signal = 4'b0000;
 				endcase
-			3'b011: ControlSignal = 4'b0000; // ADDI 001000
-			3'b100: ControlSignal = 4'b1000; // ANDI 001100
-			3'b101: ControlSignal = 4'b1001; //  ORI 001101
-			3'b110: ControlSignal = 4'b1100; // XORI 001110
-			3'b111: ControlSignal = 4'b1101; // SLTI 001010
+			3'b011: Signal = 4'b0000; // ADDI --> ADD
+			3'b100: Signal = 4'b1000; // ANDI --> AND
+			3'b101: Signal = 4'b1001; //  ORI -->  OR
+			3'b110: Signal = 4'b1100; // XORI --> XOR
+			3'b111: Signal = 4'b1101; // SLTI --> SLT
 			default:
-				ControlSignal = 4'b0000;
+				Signal = 4'b0000;
 		endcase 
 	end
-	
-	
 endmodule
