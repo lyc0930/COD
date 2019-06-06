@@ -18,13 +18,13 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`include "MIPS_opcode.vh"
 
-
-module ControlUnit(clock, reset, op, PCWriteCondition_0, PCWriteCondition_1, PCWrite, IorD, MemWrite, 
-MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst, CurrentState, NextState);
+module ControlUnit(clock, reset, opcode, PCWriteCondition_0, PCWriteCondition_1, PCWrite, IorD, MemWrite, 
+MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst);
 	input clock;
 	input reset;
-	input      [5 : 0] op;
+	input      [5 : 0] opcode;
 
 	output reg PCWriteCondition_0;
 	output reg PCWriteCondition_1;
@@ -42,7 +42,7 @@ MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst, CurrentS
 	output reg RegDst;
 	
 	// State
-	output reg [16 : 0] CurrentState, NextState;
+	reg [16 : 0] CurrentState, NextState;
 //	parameter Idle                 = 17'b00000000000000000,
 //			  InstructionFetch     = 17'b00000000000000001,
 //			  InstructionDecode    = 17'b00000000000000010,
@@ -122,28 +122,28 @@ MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst, CurrentS
 			
 			InstructionDecode: 
 			begin				
-				case (op)
-					6'b100011: // LW
+				case (opcode)
+					`LW: 
 						NextState = MemoryAddressCompute;
-					6'b101011: // SW
+					`SW: 
 						NextState = MemoryAddressCompute;
-					6'b000000: // R-type
+					`R_type: 
 						NextState = RTypeExecution;
-				   	6'b001000: // ADDI
+				   	`ADDI:
 				   		NextState = ADDIExecution; 
-				   	6'b001100: // ANDI 
+				   	`ANDI: 
 				   		NextState = ANDIExecution;
-				   	6'b001101: //  ORI  
+				   	`ORI:  
 				   		NextState = ORIExecution;
-				   	6'b001110: // XORI 
+				   	`XORI: 
 				   		NextState = XORIExecution;
-				   	6'b001010: // SLTI 
+				   	`SLTI: 
 				   		NextState = SLTIExecution;
-					6'b000100: // BEQ
+					`BEQ: 
 						NextState = BEQComplete;
-					6'b000101: // BNE
+					`BNE: 
 						NextState = BNEComplete;
-					6'b000010: // J
+					`J: 
 						NextState = JumpComplete;
 					default : 
 						NextState = InstructionFetch;
@@ -152,10 +152,10 @@ MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst, CurrentS
     		
     		MemoryAddressCompute: 
     		begin				
-				case (op)
-					6'b100011: // LW
+				case (opcode)
+					`LW:
 						NextState = MemoryAccess_LW;
-					6'b101011: // SW
+					`SW: 
 						NextState = MemoryAccess_SW;
 					default : 
 						NextState = InstructionFetch;
