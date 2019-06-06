@@ -18,10 +18,11 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+`include "MIPS_opcode.vh"
 
 module MulticycleCPU #(parameter DIGIT = 32, FIELDWIDTH = 5, ADDRWIDTH = 16, DEBUGSIZE = 8)
 (CLK, reset, run, MemData, ProbeAddress, MemWrite, MemAddress, RegReadData_1_RegOut, ProbePC, ProbeRegData);
+//clk & run,rst,MemData,addr,MemAddr,MemWrite,WriteData,reg_data,PC_out);	
 	input CLK;
 	input reset;
 	input run;
@@ -65,12 +66,6 @@ module MulticycleCPU #(parameter DIGIT = 32, FIELDWIDTH = 5, ADDRWIDTH = 16, DEB
 	wire      [DIGIT - 1 : 0] ALUOut;
 	wire      [DIGIT - 1 : 0] NextPC;
 	
-	// Decode
-	wire              [5 : 0] op;
-	wire [FIELDWIDTH - 1 : 0] rs, rt, rd, shamt;
-	wire              [5 : 0] funct;
-	
-	assign {op, rs, rt, rd, shamt, funct} = Instruction; // R-type
 	
 	// Debug
 	wire clock;
@@ -79,22 +74,22 @@ module MulticycleCPU #(parameter DIGIT = 32, FIELDWIDTH = 5, ADDRWIDTH = 16, DEB
 	assign clock = run & CLK;
 	
 	// Connection
-	ControlUnit 		             CU                       (clock, reset, op, PCWriteCondition_0, PCWriteCondition_1, PCWrite, IorD, MemWrite, MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst);
-	ProgramCounter                   PC                       (clock, reset, NextPC, ((ALUFlags[0] & PCWriteCondition_0) | (~ALUFlags[0] & PCWriteCondition_1) | PCWrite), PCOut);
-	Multiplexer #(2, DIGIT)          MUX_MemAddress           (PCOut, ALUOut, , , IorD, MemAddress);
-	InstructionRegister  			 IR                       (clock, IRWrite, MemData, Instruction);
-	Register                         MDR                      (clock, MemData, MemData_RegOut);
-	Multiplexer #(2, FIELDWIDTH)     MUX_RegisterWriteAddress (rt, rd, , , RegDst, RegWriteAddress);
-	Multiplexer #(2, DIGIT)          MUX_RegisterWriteData    (ALUOut, MemData_RegOut, , , MemtoReg, RegWriteData);
-	Registers   #(FIELDWIDTH, DIGIT) DR                       (clock, reset, rs, rt, ProbeAddress, RegWriteAddress, RegWriteData, RegWrite, RegReadData_0, RegReadData_1, ProbeRegData);
-	SignExtend			             EX                       (Instruction[15 : 0], Instruction_Extended);
-	Register                         A                        (clock, RegReadData_0, RegReadData_0_RegOut);
-	Register                         B                        (clock, RegReadData_1, RegReadData_1_RegOut);
-	Multiplexer #(2, DIGIT)          MUX_ALUSourceA           (PCOut, RegReadData_0_RegOut, , , ALUSrcA, ALUSource_A);
-	Multiplexer #(4, DIGIT)          MUX_ALUSourceB           (RegReadData_1_RegOut, 'd4, Instruction_Extended, (Instruction_Extended << 2), ALUSrcB, ALUSource_B);
-	ALUControl		                 ALUCTRL                  (funct, ALUOp, ALUControlSignal);
-	ALU	                             ALU                      (ALUControlSignal, ALUSource_A, ALUSource_B, ALUResult, ALUFlags);
-	Register                         ALUOUT                   (clock, ALUResult, ALUOut);
-	Multiplexer #(3, DIGIT)          MUX_NextPC               (ALUResult, ALUOut, {PCOut[31 : 28], Instruction[25 : 0], 2'b00}, , PCSource, NextPC);
+	ControlUnit      	              CU                       (clock, reset, Instruction[`opcode], PCWriteCondition_0, PCWriteCondition_1, PCWrite, IorD, MemWrite, MemtoReg, IRWrite, PCSource, ALUOp, ALUSrcA, ALUSrcB, RegWrite, RegDst);
+	ProgramCounter                    PC                       (clock, reset, NextPC, ((ALUFlags[0] & PCWriteCondition_0) | (~ALUFlags[0] & PCWriteCondition_1) | PCWrite), PCOut);
+	Multiplexer  #(2, DIGIT)          MUX_MemAddress           (PCOut, ALUOut, , , IorD, MemAddress);
+	InstructionRegister   			  IR                       (clock, IRWrite, MemData, Instruction);
+	Register                          MDR                      (clock, MemData, MemData_RegOut);
+	Multiplexer  #(2, FIELDWIDTH)     MUX_RegisterWriteAddress (Instruction[`rt], Instruction[`rd], , , RegDst, RegWriteAddress);
+	Multiplexer  #(2, DIGIT)          MUX_RegisterWriteData    (ALUOut, MemData_RegOut, , , MemtoReg, RegWriteData);
+	RegisterFile #(FIELDWIDTH, DIGIT) DR                       (clock, reset, Instruction[`rs], Instruction[`rt], ProbeAddress, RegWriteAddress, RegWriteData, RegWrite, RegReadData_0, RegReadData_1, ProbeRegData);
+	SignExtend			              IEX                      (Instruction[15 : 0], Instruction_Extended);
+	Register                          A                        (clock, RegReadData_0, RegReadData_0_RegOut);
+	Register                          B                        (clock, RegReadData_1, RegReadData_1_RegOut);
+	Multiplexer  #(2, DIGIT)          MUX_ALUSourceA           (PCOut, RegReadData_0_RegOut, , , ALUSrcA, ALUSource_A);
+	Multiplexer  #(4, DIGIT)          MUX_ALUSourceB           (RegReadData_1_RegOut, 'd4, Instruction_Extended, (Instruction_Extended << 2), ALUSrcB, ALUSource_B);
+	ALUControl		                  ALUCTRL                  (Instruction[`funct], ALUOp, ALUControlSignal);
+	ALU	                              ALU                      (ALUControlSignal, ALUSource_A, ALUSource_B, ALUResult, ALUFlags);
+	Register                          ALUOUT                   (clock, ALUResult, ALUOut);
+	Multiplexer  #(3, DIGIT)          MUX_NextPC               (ALUResult, ALUOut, {PCOut[31 : 28], Instruction[25 : 0], 2'b00}, , PCSource, NextPC);
 
 endmodule
