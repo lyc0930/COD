@@ -3,7 +3,7 @@
 ### Computer Organization and Design
 ***
 ##### 这是用于存放大二年级下学期组成原理上机实验课程代码的仓库，库内还包括截图、下载照片、实验报告等相关内容  
-##### This is a repository of verilog code of computer organization and design courses in summer semester of sophomore including the screen-catches, photos and reports of courses  
+##### This is a repository of verilog code of computer organization and design courses in spring semester of sophomore including the screen-catches, photos and reports of courses  
 
 ***
 #### 各次实验对应目录：  
@@ -18,7 +18,13 @@
     **VGA_Brush**  
 5. 多周期CPU  
     **MulticycleCPU**  
+6. 综合实验  
+    **Fibonacci_VGA, MulticycleCPU**  
 
+> 注：在第六次实验中，对于多周期CPU的代码结构有了非功能性的优化，已覆盖更新，注意MulticycleCPU目录下的代码版本  
+> P.s. Note: In Lab6, the code structure of the multicycle CPU has been non-functionally optimized, and the update has been overwritten. Note the code version in the MulticycleCPU directory.  
+
+***
 #### 其他代码片段的说明：  
 #### Code snippets:   
 - **Counter.v**  
@@ -52,4 +58,6 @@
     将BCD码编码为七段数码管显示输出  
     Encode BCD for 7-Segment display  
 
-### 目前更新到第五次实验
+***
+### 目前大二春季学期更新已结束  
+### Course has ended, so the update is suspended  
