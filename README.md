@@ -51,7 +51,7 @@
 - [**Nexys4DDR_Master.xdc**](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/Nexys4DDR_Master.xdc)  
     开发版约束文件  
     Constraint file of the Nexys4DDR  
-- [**SunglePulse.v**](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/SunglePulse.v)  
+- [**SinglePulse.v**](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/SinglePulse.v)  
     产生单独时钟周期信号  
     Translate a signal change to a single clock cycle  
 - [**bcdto7segment_dataflow.v**](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/bcdto7segment_dataflow.v)  
