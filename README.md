@@ -22,7 +22,7 @@
     **Fibonacci_VGA, MulticycleCPU**  
 
 > 注：在第六次实验中，对于多周期CPU的代码结构有了非功能性的优化，已覆盖更新，注意MulticycleCPU目录下的代码版本  
-> P.s. Note: In Lab6, the code structure of the multicycle CPU has been non-functionally optimized, and the update has been overwritten. Note the code version in the MulticycleCPU directory.  
+> P.s. In Lab6, the code structure of the multicycle CPU has been non-functionally optimized, and the update has been overwritten. Note the code version in the MulticycleCPU directory.  
 
 ***
 #### 其他代码片段的说明：  
