@@ -1,7 +1,7 @@
 # COD
 ### 计算机组成原理与设计实验
 ### Computer Organization and Design
-[![](https://img.shields.io/badge/Lab-@lyc0930-brightgreen.svg?style=flat)](https://github.com/lyc0930) ![](https://img.shields.io/badge/USTC-2018Spring-inactive.svg?style=flat)
+[![](https://img.shields.io/badge/Lab-@lyc0930-brightgreen.svg?style=flat)](https://github.com/lyc0930) ![](https://img.shields.io/badge/USTC-2019Spring-inactive.svg?style=flat)
 ***
 ##### 这是用于存放大二年级下学期组成原理上机实验课程代码的仓库，库内还包括截图、下载照片、[实验报告](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/实验报告)等相关内容  
 ##### This is a repository of verilog code of computer organization and design courses in spring semester of sophomore including the screen-catches, photos and [reports](https://git.lug.ustc.edu.cn/luoyanchen/cod/tree/master/实验报告) of courses  
